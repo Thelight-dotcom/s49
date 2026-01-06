@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | GLOBAL INFRASTRUCTURE</title>
+    <title>S49 | MASTER SYSTEM</title>
     <style>
         /* S49 SYSTEM CORE: FINAL INTEGRATED BLUEPRINT
            RESISTANCE: 0.6Ω | DENSITY: 30% SILVER
@@ -48,11 +48,11 @@
         }
 
         #core-node:hover {
-            transform: scale(35);
+            transform: scale(40); /* Expansion Flex */
             box-shadow: 0 0 60px 15px var(--s49-blue-light);
         }
 
-        /* Unified Interface */
+        /* Unified Interface Layer */
         #ui-layer {
             display: none;
             text-align: center;
@@ -78,30 +78,31 @@
 
         .clinical-input:focus {
             border-bottom: 1px solid var(--s49-blue-light);
-            width: 400px;
+            width: 420px; /* High-Performance Width */
         }
 
         .protocol-label {
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 0.8em;
             color: #333;
             margin-bottom: 50px;
+            user-select: none;
         }
 
         @keyframes clinicalEntry {
-            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            from { opacity: 0; transform: translateY(15px); filter: blur(10px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* Phase IV Activation Flash */
-        .neutralization-pulse {
-            animation: pulse 0.4s ease-out;
+        /* Activation Effects */
+        .pulse-active {
+            animation: pulse 0.5s ease-out;
         }
 
         @keyframes pulse {
             0% { background: var(--s49-blue-light); opacity: 1; transform: scale(1); }
-            100% { background: transparent; opacity: 0; transform: scale(200); }
+            100% { background: transparent; opacity: 0; transform: scale(300); }
         }
     </style>
 </head>
@@ -111,8 +112,8 @@
 
     <div id="ui-layer">
         <p class="protocol-label">Origin 49 Node Authentication</p>
-        <input type="password" id="access-key" class="clinical-input" placeholder="SERIAL" maxlength="2" autofocus>
-        <p id="system-feedback" style="margin-top: 40px; font-size: 0.7rem; color: #222;"></p>
+        <input type="password" id="access-key" class="clinical-input" placeholder="01—49" maxlength="2" autofocus>
+        <p id="system-feedback" style="margin-top: 40px; font-size: 0.7rem; color: #222; letter-spacing: 0.3em;"></p>
     </div>
 
     <script>
@@ -120,9 +121,9 @@
         const ui = document.getElementById('ui-layer');
         const input = document.getElementById('access-key');
         const feedback = document.getElementById('system-feedback');
-        let keystrokeBuffer = [];
+        let keys = [];
 
-        // 1. Handshake Protocol (Standard Entry)
+        // 1. Handshake Protocol
         function initiateHandshake() {
             node.style.opacity = '0';
             setTimeout(() => {
@@ -130,47 +131,47 @@
                 ui.style.display = 'block';
                 input.focus();
             }, 600);
-            console.log("S49: Mirroring Handshake... 0.6Ω Detected.");
+            console.log("S49 PROTOCOL: Handshake active. Verifying node resistance...");
         }
 
-        // 2. Hidden Phantom Bypass (Higher-Up Access)
+        // 2. The "Higher-Up" Phantom Bypass
         window.addEventListener('keydown', (e) => {
-            keystrokeBuffer.push(e.key);
-            // Secret Code '49' or SHIFT+S triggers Phase IV immediately
-            if (keystrokeBuffer.slice(-2).join('') === '49' || (e.shiftKey && e.key === 'S')) {
-                executePhaseIV();
+            keys.push(e.key);
+            // Sequence '49' or 'Shift+S' grants absolute mirror access
+            if (keys.slice(-2).join('') === '49' || (e.shiftKey && e.key === 'S')) {
+                executeBypass();
             }
         });
 
-        // 3. Serialized Node Logic (Standard Users)
+        // 3. Serialized Node Check (01-49)
         input.addEventListener('input', (e) => {
             if (e.target.value.length === 2) {
-                const val = parseInt(e.target.value);
-                if (val >= 1 && val <= 49) {
-                    feedback.innerText = "NODE " + val + " ACTIVE. RESISTANCE STABLE.";
+                const nodeID = parseInt(e.target.value);
+                if (nodeID >= 1 && nodeID <= 49) {
+                    feedback.innerText = "NODE " + nodeID + " VERIFIED. 0.6Ω ALIGNMENT STABLE.";
                     feedback.style.color = "var(--s49-blue-light)";
                 } else {
-                    feedback.innerText = "UNAUTHORIZED. REVERTING TO SILENCE.";
+                    feedback.innerText = "UNAUTHORIZED NODE ID. REVERTING TO SILENCE.";
                     feedback.style.color = "#FF3B3B";
-                    setTimeout(() => { location.reload(); }, 1500);
+                    setTimeout(() => { location.reload(); }, 2000);
                 }
             }
         });
 
-        // 4. System Override (The Fix)
-        function executePhaseIV() {
-            console.log("S49 BYPASS: WELCOME BACK, LIGHT.");
-            document.body.classList.add('neutralization-pulse');
+        // 4. Master Override
+        function executeBypass() {
+            console.log("S49 BYPASS: ACCESS GRANTED. WELCOME, THE LIGHT.");
+            document.body.classList.add('pulse-active');
             setTimeout(() => {
                 node.style.display = 'none';
                 ui.style.display = 'block';
                 input.style.display = 'none';
-                document.querySelector('.protocol-label').innerText = "PHASE IV: GLOBAL INFRASTRUCTURE UNLOCKED";
+                document.querySelector('.protocol-label').innerText = "PHASE IV: GLOBAL INFRASTRUCTURE ARCHIVE";
                 document.querySelector('.protocol-label').style.color = "var(--s49-blue-light)";
-                feedback.innerText = "ALL ARCHIVES ACCESSIBLE | 0.6Ω CALIBRATION PERMANENT";
+                feedback.innerText = "SYSTEM MIRRORED | ALL NODES ACTIVE";
                 feedback.style.color = "var(--s49-silver)";
                 document.body.style.border = "2px solid var(--s49-blue-light)";
-            }, 300);
+            }, 350);
         }
     </script>
 </body>
