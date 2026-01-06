@@ -2,105 +2,147 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>S49 | SYSTEM OVERRIDE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S49 | THE SILENCE</title>
     <style>
-        /* S49 HIGHER-UP OVERRIDE DNA */
+        /* S49 ECOSYSTEM MASTER DNA 
+           SPEC: 0.6Ω RESISTANCE | 30% SILVER DENSITY
+           PHASE I: ORIGIN 49 ACTIVATION
+        */
+
         :root {
-            --s49-black: #050505;
-            --s49-blue-light: #00F3FF;
-            --s49-silver: #C0C0C0;
+            --s49-black: #050505;           
+            --s49-silver: #C0C0C0;          
+            --s49-blue-light: #00F3FF;      
+            --s49-clinical-white: #F9F9F9;
         }
 
-        body, html {
-            background: var(--s49-black);
-            height: 100vh;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair; /* Clinical Precision */
+        }
+
+        body {
+            background-color: var(--s49-black);
+            color: var(--s49-silver);
+            font-family: 'Helvetica Neue', Helvetica, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Helvetica Neue', sans-serif;
+            height: 100vh;
             overflow: hidden;
-            cursor: crosshair; /* Surgical Precision */
+            letter-spacing: 0.25em;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* The Core Mirror Node */
+        /* The Core Node: The "Black Hole" Visual */
         #core-node {
             width: 2px;
             height: 2px;
             background: var(--s49-blue-light);
             box-shadow: 0 0 15px 1px var(--s49-blue-light);
             border-radius: 50%;
-            transition: all 0.5s ease-in-out;
-            z-index: 100;
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            opacity: 0.8;
+            z-index: 10;
         }
 
-        /* The Bypass Flash: Clinical Neutralization */
-        .bypass-flash {
-            animation: flash 0.3s ease-in-out forwards;
+        #core-node:hover {
+            transform: scale(35);
+            box-shadow: 0 0 60px 15px var(--s49-blue-light);
+            opacity: 1;
         }
 
-        @keyframes flash {
-            0% { background: var(--s49-blue-light); transform: scale(0); opacity: 1; }
-            50% { transform: scale(150); opacity: 0.5; }
-            100% { transform: scale(300); opacity: 0; }
-        }
-
-        #vault-access {
+        /* Serialized Entry Portal */
+        #auth-portal {
             display: none;
-            color: var(--s49-blue-light);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            letter-spacing: 0.5em;
-            animation: fadeIn 1.5s ease-in;
+            animation: clinicalFade 2s ease-in-out forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .clinical-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+            color: var(--s49-blue-light);
+            font-size: 1.5rem;
+            font-weight: 200;
+            text-align: center;
+            outline: none;
+            width: 300px;
+            padding: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .clinical-input:focus {
+            border-bottom: 1px solid var(--s49-blue-light);
+            width: 350px;
+        }
+
+        .status-msg {
+            font-size: 0.6rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            color: #222; /* Total Silence / Stealth */
+            user-select: none;
+        }
+
+        @keyframes clinicalFade {
+            0% { opacity: 0; filter: blur(10px); }
+            100% { opacity: 1; filter: blur(0); }
         }
     </style>
 </head>
 <body>
 
-    <div id="core-node"></div>
-    
-    <div id="vault-access">
-        <h2>S49 ARCHIVE UNLOCKED</h2>
-        <p style="font-size: 0.7rem; color: var(--s49-silver); margin-top: 20px;">
-            0.6Ω CALIBRATION COMPLETE | PHASE IV STANDBY
-        </p>
+    <div id="core-node" onclick="initiateHandshake()"></div>
+
+    <div id="auth-portal">
+        <p class="status-msg">Origin 49 Serialized Node Assignment Required</p>
+        <input type="password" id="node-id" class="clinical-input" placeholder="01—49" maxlength="2" autofocus>
+        <p id="feedback" style="margin-top: 30px; font-size: 0.65rem; color: #333; letter-spacing: 0.4em;"></p>
     </div>
 
     <script>
-        const node = document.getElementById('core-node');
-        const vault = document.getElementById('vault-access');
-        let keys = [];
+        function initiateHandshake() {
+            const core = document.getElementById('core-node');
+            const portal = document.getElementById('auth-portal');
+            
+            core.style.opacity = '0';
+            setTimeout(() => {
+                core.style.display = 'none';
+                portal.style.display = 'block';
+                document.getElementById('node-id').focus();
+            }, 600);
+            
+            console.log("S49 PROTOCOL: Handshake active. Verifying node resistance...");
+        }
 
-        // PHANTOM LISTENER: Typing '49' or SHIFT+S triggers the bypass
-        window.addEventListener('keydown', (e) => {
-            keys.push(e.key);
-            if (keys.slice(-2).join('') === '49' || (e.shiftKey && e.key === 'S')) {
-                executeBypass();
+        // Serialized Node Assignment Logic (01-49)
+        document.getElementById('node-id').addEventListener('input', function(e) {
+            const val = e.target.value;
+            const feedback = document.getElementById('feedback');
+            
+            if(val.length === 2) {
+                const nodeNum = parseInt(val);
+                if(nodeNum >= 1 && nodeNum <= 49) {
+                    feedback.innerText = "NODE " + val + " RECOGNIZED. 0.6Ω ALIGNMENT ACTIVE.";
+                    feedback.style.color = "#00F3FF";
+                    // Phase IV transition logic can be inserted here
+                } else {
+                    feedback.innerText = "UNAUTHORIZED NODE. REVERTING TO SILENCE.";
+                    feedback.style.color = "#FF3B3B";
+                    setTimeout(() => { location.reload(); }, 2000);
+                }
             }
         });
-
-        // STEALTH LONG-PRESS: 3-second hold for secret entry
-        let timer;
-        node.addEventListener('mousedown', () => {
-            timer = setTimeout(executeBypass, 3000); 
-        });
-        node.addEventListener('mouseup', () => clearTimeout(timer));
-
-        function executeBypass() {
-            console.log("S49 PROTOCOL: BYPASS DETECTED. IDENTITY CONFIRMED.");
-            node.classList.add('bypass-flash');
-            
-            setTimeout(() => {
-                node.style.display = 'none';
-                vault.style.display = 'block';
-                // Activate the "Higher-Up" Frame
-                document.body.style.border = "1px solid rgba(0, 243, 255, 0.3)";
-            }, 300);
-        }
     </script>
 </body>
 </html>
+          
