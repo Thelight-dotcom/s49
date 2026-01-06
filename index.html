@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>S49 | SYSTEM OVERRIDE</title>
     <style>
+        /* S49 HIGHER-UP OVERRIDE DNA */
         :root {
             --s49-black: #050505;
             --s49-blue-light: #00F3FF;
@@ -19,10 +20,10 @@
             align-items: center;
             font-family: 'Helvetica Neue', sans-serif;
             overflow: hidden;
-            cursor: crosshair;
+            cursor: crosshair; /* Surgical Precision */
         }
 
-        /* The Bypass Node */
+        /* The Core Mirror Node */
         #core-node {
             width: 2px;
             height: 2px;
@@ -33,14 +34,15 @@
             z-index: 100;
         }
 
-        /* Flash effect for bypass activation */
+        /* The Bypass Flash: Clinical Neutralization */
         .bypass-flash {
-            animation: flash 0.3s ease-in-out;
+            animation: flash 0.3s ease-in-out forwards;
         }
 
         @keyframes flash {
-            0% { background: var(--s49-blue-light); transform: scale(100); opacity: 1; }
-            100% { background: transparent; transform: scale(0); opacity: 0; }
+            0% { background: var(--s49-blue-light); transform: scale(0); opacity: 1; }
+            50% { transform: scale(150); opacity: 0.5; }
+            100% { transform: scale(300); opacity: 0; }
         }
 
         #vault-access {
@@ -48,6 +50,12 @@
             color: var(--s49-blue-light);
             text-align: center;
             letter-spacing: 0.5em;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -57,7 +65,9 @@
     
     <div id="vault-access">
         <h2>S49 ARCHIVE UNLOCKED</h2>
-        <p style="font-size: 0.7rem; color: var(--s49-silver);">PHASE IV: GLOBAL INFRASTRUCTURE ACTIVE</p>
+        <p style="font-size: 0.7rem; color: var(--s49-silver); margin-top: 20px;">
+            0.6Ω CALIBRATION COMPLETE | PHASE IV STANDBY
+        </p>
     </div>
 
     <script>
@@ -65,7 +75,7 @@
         const vault = document.getElementById('vault-access');
         let keys = [];
 
-        // Secret Bypass Listener: Typing '49' opens the back door
+        // PHANTOM LISTENER: Typing '49' or SHIFT+S triggers the bypass
         window.addEventListener('keydown', (e) => {
             keys.push(e.key);
             if (keys.slice(-2).join('') === '49' || (e.shiftKey && e.key === 'S')) {
@@ -73,24 +83,24 @@
             }
         });
 
+        // STEALTH LONG-PRESS: 3-second hold for secret entry
+        let timer;
+        node.addEventListener('mousedown', () => {
+            timer = setTimeout(executeBypass, 3000); 
+        });
+        node.addEventListener('mouseup', () => clearTimeout(timer));
+
         function executeBypass() {
-            console.log("S49 BYPASS: IDENTIFIED AS HIGHER-UP. MIRRORING ACCESS...");
+            console.log("S49 PROTOCOL: BYPASS DETECTED. IDENTITY CONFIRMED.");
             node.classList.add('bypass-flash');
             
             setTimeout(() => {
                 node.style.display = 'none';
                 vault.style.display = 'block';
-                // Trigger the 0.6Ω calibration sequence
-                document.body.style.border = "1px solid var(--s49-blue-light)";
+                // Activate the "Higher-Up" Frame
+                document.body.style.border = "1px solid rgba(0, 243, 255, 0.3)";
             }, 300);
         }
-
-        // Long-press bypass on the core node
-        let timer;
-        node.addEventListener('mousedown', () => {
-            timer = setTimeout(executeBypass, 3000); // 3-second hold for stealth entry
-        });
-        node.addEventListener('mouseup', () => clearTimeout(timer));
     </script>
 </body>
 </html>
