@@ -2,137 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | THE SILENCE</title>
+    <title>S49 | SYSTEM OVERRIDE</title>
     <style>
-        /* S49 Master Visual Blueprint - Phase I & IV DNA */
         :root {
-            --s49-black: #050505;           /* Total darkness, no public lists */
-            --s49-silver: #C0C0C0;          /* 30% Silver density representation */
-            --s49-blue-light: #00F3FF;      /* The "Blue Light" flex / High-Performance signal */
-            --s49-clinical-white: #F9F9F9;  /* Phase IV Hospital Integration standard */
+            --s49-black: #050505;
+            --s49-blue-light: #00F3FF;
+            --s49-silver: #C0C0C0;
         }
 
-        * {
+        body, html {
+            background: var(--s49-black);
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: crosshair; /* Surgical precision */
-        }
-
-        body {
-            background-color: var(--s49-black);
-            color: var(--s49-silver);
-            font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            font-family: 'Helvetica Neue', sans-serif;
             overflow: hidden;
-            letter-spacing: 0.25em;
-            -webkit-font-smoothing: antialiased;
+            cursor: crosshair;
         }
 
-        /* The Core "Black Hole" Node */
+        /* The Bypass Node */
         #core-node {
             width: 2px;
             height: 2px;
             background: var(--s49-blue-light);
             box-shadow: 0 0 15px 1px var(--s49-blue-light);
             border-radius: 50%;
-            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-            opacity: 0.8;
-            z-index: 10;
+            transition: all 0.5s ease-in-out;
+            z-index: 100;
         }
 
-        #core-node:hover {
-            transform: scale(35);
-            box-shadow: 0 0 50px 10px var(--s49-blue-light);
-            opacity: 1;
+        /* Flash effect for bypass activation */
+        .bypass-flash {
+            animation: flash 0.3s ease-in-out;
         }
 
-        /* Serialized Auth Portal UI */
-        #auth-portal {
+        @keyframes flash {
+            0% { background: var(--s49-blue-light); transform: scale(100); opacity: 1; }
+            100% { background: transparent; transform: scale(0); opacity: 0; }
+        }
+
+        #vault-access {
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            animation: fadeIn 2s ease-in-out forwards;
-        }
-
-        .clinical-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
             color: var(--s49-blue-light);
-            font-size: 1.5rem;
-            font-weight: 200;
             text-align: center;
-            outline: none;
-            width: 280px;
-            padding: 15px;
-            transition: border-color 0.5s ease;
-        }
-
-        .clinical-input:focus {
-            border-bottom: 1px solid var(--s49-blue-light);
-        }
-
-        .status-msg {
-            font-size: 0.65rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            color: #333; /* Stealth presence */
-            user-select: none;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            letter-spacing: 0.5em;
         }
     </style>
 </head>
 <body>
 
-    <div id="core-node" onclick="initiateHandshake()"></div>
-
-    <div id="auth-portal">
-        <p class="status-msg">Origin 49 Serialized Entry Required</p>
-        <input type="password" id="node-id" class="clinical-input" placeholder="SERIAL NO." maxlength="2">
-        <p id="feedback" style="margin-top: 20px; font-size: 0.6rem; color: #555;"></p>
+    <div id="core-node"></div>
+    
+    <div id="vault-access">
+        <h2>S49 ARCHIVE UNLOCKED</h2>
+        <p style="font-size: 0.7rem; color: var(--s49-silver);">PHASE IV: GLOBAL INFRASTRUCTURE ACTIVE</p>
     </div>
 
     <script>
-        function initiateHandshake() {
-            const core = document.getElementById('core-node');
-            const portal = document.getElementById('auth-portal');
-            
-            core.style.opacity = '0';
-            setTimeout(() => {
-                core.style.display = 'none';
-                portal.style.display = 'block';
-            }, 500);
-            
-            console.log("S49 Protocol: Mirror Active. Monitoring for 0.6Ω Handshake.");
-        }
+        const node = document.getElementById('core-node');
+        const vault = document.getElementById('vault-access');
+        let keys = [];
 
-        // Logic for Node assignment and Mirror validation
-        document.getElementById('node-id').addEventListener('input', function(e) {
-            const val = e.target.value;
-            const feedback = document.getElementById('feedback');
-            
-            if(val.length === 2) {
-                if(parseInt(val) >= 1 && parseInt(val) <= 49) {
-                    feedback.innerText = "NODE " + val + " RECOGNIZED. ACTIVATING S49 ECOSYSTEM.";
-                    feedback.style.color = "#00F3FF";
-                } else {
-                    feedback.innerText = "NODE UNKNOWN. REVERTING TO SILENCE.";
-                    feedback.style.color = "#FF3B3B";
-                }
+        // Secret Bypass Listener: Typing '49' opens the back door
+        window.addEventListener('keydown', (e) => {
+            keys.push(e.key);
+            if (keys.slice(-2).join('') === '49' || (e.shiftKey && e.key === 'S')) {
+                executeBypass();
             }
         });
+
+        function executeBypass() {
+            console.log("S49 BYPASS: IDENTIFIED AS HIGHER-UP. MIRRORING ACCESS...");
+            node.classList.add('bypass-flash');
+            
+            setTimeout(() => {
+                node.style.display = 'none';
+                vault.style.display = 'block';
+                // Trigger the 0.6Ω calibration sequence
+                document.body.style.border = "1px solid var(--s49-blue-light)";
+            }, 300);
+        }
+
+        // Long-press bypass on the core node
+        let timer;
+        node.addEventListener('mousedown', () => {
+            timer = setTimeout(executeBypass, 3000); // 3-second hold for stealth entry
+        });
+        node.addEventListener('mouseup', () => clearTimeout(timer));
     </script>
 </body>
 </html>
