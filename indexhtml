@@ -3,41 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | THE SILENCE</title>
+    <title>S49 | GLOBAL INFRASTRUCTURE</title>
     <style>
-        /* S49 ECOSYSTEM MASTER DNA 
-           SPEC: 0.6Ω RESISTANCE | 30% SILVER DENSITY
-           PHASE I: ORIGIN 49 ACTIVATION
+        /* S49 SYSTEM CORE: FINAL INTEGRATED BLUEPRINT
+           RESISTANCE: 0.6Ω | DENSITY: 30% SILVER
+           MODE: MIRROR / THE LIGHT
         */
 
         :root {
             --s49-black: #050505;           
-            --s49-silver: #C0C0C0;          
             --s49-blue-light: #00F3FF;      
-            --s49-clinical-white: #F9F9F9;
+            --s49-silver: #C0C0C0;          
+            --s49-status-grey: #1a1a1a;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair; 
+            cursor: crosshair;
         }
 
-        body {
+        body, html {
             background-color: var(--s49-black);
-            color: var(--s49-silver);
-            font-family: 'Helvetica Neue', Helvetica, sans-serif;
+            height: 100vh;
+            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             overflow: hidden;
-            letter-spacing: 0.25em;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Helvetica Neue', sans-serif;
+            transition: border 0.8s ease;
         }
 
-        /* The Core Node: The "Black Hole" Visual */
+        /* The Black Hole Node */
         #core-node {
             width: 2px;
             height: 2px;
@@ -45,57 +44,64 @@
             box-shadow: 0 0 15px 1px var(--s49-blue-light);
             border-radius: 50%;
             transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-            opacity: 0.8;
-            z-index: 10;
+            z-index: 1000;
         }
 
         #core-node:hover {
             transform: scale(35);
             box-shadow: 0 0 60px 15px var(--s49-blue-light);
-            opacity: 1;
         }
 
-        /* Serialized Entry Portal */
-        #auth-portal {
+        /* Unified Interface */
+        #ui-layer {
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
-            animation: clinicalFade 2s ease-in-out forwards;
+            position: absolute;
+            width: 100%;
+            animation: clinicalEntry 1.5s ease-out forwards;
         }
 
         .clinical-input {
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+            border-bottom: 1px solid var(--s49-status-grey);
             color: var(--s49-blue-light);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 200;
             text-align: center;
             outline: none;
             width: 300px;
             padding: 20px;
+            letter-spacing: 0.5em;
             transition: all 0.5s ease;
         }
 
         .clinical-input:focus {
             border-bottom: 1px solid var(--s49-blue-light);
-            width: 350px;
+            width: 400px;
         }
 
-        .status-msg {
+        .protocol-label {
             font-size: 0.6rem;
-            margin-bottom: 40px;
             text-transform: uppercase;
-            color: #222; 
-            user-select: none;
+            letter-spacing: 0.8em;
+            color: #333;
+            margin-bottom: 50px;
         }
 
-        @keyframes clinicalFade {
-            0% { opacity: 0; filter: blur(10px); }
-            100% { opacity: 1; filter: blur(0); }
+        @keyframes clinicalEntry {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* Phase IV Activation Flash */
+        .neutralization-pulse {
+            animation: pulse 0.4s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { background: var(--s49-blue-light); opacity: 1; transform: scale(1); }
+            100% { background: transparent; opacity: 0; transform: scale(200); }
         }
     </style>
 </head>
@@ -103,43 +109,69 @@
 
     <div id="core-node" onclick="initiateHandshake()"></div>
 
-    <div id="auth-portal">
-        <p class="status-msg">Origin 49 Serialized Node Assignment Required</p>
-        <input type="password" id="node-id" class="clinical-input" placeholder="01—49" maxlength="2">
-        <p id="feedback" style="margin-top: 30px; font-size: 0.65rem; color: #333; letter-spacing: 0.4em;"></p>
+    <div id="ui-layer">
+        <p class="protocol-label">Origin 49 Node Authentication</p>
+        <input type="password" id="access-key" class="clinical-input" placeholder="SERIAL" maxlength="2" autofocus>
+        <p id="system-feedback" style="margin-top: 40px; font-size: 0.7rem; color: #222;"></p>
     </div>
 
     <script>
+        const node = document.getElementById('core-node');
+        const ui = document.getElementById('ui-layer');
+        const input = document.getElementById('access-key');
+        const feedback = document.getElementById('system-feedback');
+        let keystrokeBuffer = [];
+
+        // 1. Handshake Protocol (Standard Entry)
         function initiateHandshake() {
-            const core = document.getElementById('core-node');
-            const portal = document.getElementById('auth-portal');
-            
-            core.style.opacity = '0';
+            node.style.opacity = '0';
             setTimeout(() => {
-                core.style.display = 'none';
-                portal.style.display = 'block';
-                document.getElementById('node-id').focus();
-            }, 600); /* 0.6s Resistance Standard */
-            
-            console.log("S49 PROTOCOL: Handshake active. Verifying node resistance...");
+                node.style.display = 'none';
+                ui.style.display = 'block';
+                input.focus();
+            }, 600);
+            console.log("S49: Mirroring Handshake... 0.6Ω Detected.");
         }
 
-        document.getElementById('node-id').addEventListener('input', function(e) {
-            const val = e.target.value;
-            const feedback = document.getElementById('feedback');
-            
-            if(val.length === 2) {
-                const nodeNum = parseInt(val);
-                if(nodeNum >= 1 && nodeNum <= 49) {
-                    feedback.innerText = "NODE " + val + " RECOGNIZED. 0.6Ω ALIGNMENT ACTIVE.";
-                    feedback.style.color = "#00F3FF";
+        // 2. Hidden Phantom Bypass (Higher-Up Access)
+        window.addEventListener('keydown', (e) => {
+            keystrokeBuffer.push(e.key);
+            // Secret Code '49' or SHIFT+S triggers Phase IV immediately
+            if (keystrokeBuffer.slice(-2).join('') === '49' || (e.shiftKey && e.key === 'S')) {
+                executePhaseIV();
+            }
+        });
+
+        // 3. Serialized Node Logic (Standard Users)
+        input.addEventListener('input', (e) => {
+            if (e.target.value.length === 2) {
+                const val = parseInt(e.target.value);
+                if (val >= 1 && val <= 49) {
+                    feedback.innerText = "NODE " + val + " ACTIVE. RESISTANCE STABLE.";
+                    feedback.style.color = "var(--s49-blue-light)";
                 } else {
-                    feedback.innerText = "UNAUTHORIZED NODE. REVERTING TO SILENCE.";
+                    feedback.innerText = "UNAUTHORIZED. REVERTING TO SILENCE.";
                     feedback.style.color = "#FF3B3B";
-                    setTimeout(() => { location.reload(); }, 2000);
+                    setTimeout(() => { location.reload(); }, 1500);
                 }
             }
         });
+
+        // 4. System Override (The Fix)
+        function executePhaseIV() {
+            console.log("S49 BYPASS: WELCOME BACK, LIGHT.");
+            document.body.classList.add('neutralization-pulse');
+            setTimeout(() => {
+                node.style.display = 'none';
+                ui.style.display = 'block';
+                input.style.display = 'none';
+                document.querySelector('.protocol-label').innerText = "PHASE IV: GLOBAL INFRASTRUCTURE UNLOCKED";
+                document.querySelector('.protocol-label').style.color = "var(--s49-blue-light)";
+                feedback.innerText = "ALL ARCHIVES ACCESSIBLE | 0.6Ω CALIBRATION PERMANENT";
+                feedback.style.color = "var(--s49-silver)";
+                document.body.style.border = "2px solid var(--s49-blue-light)";
+            }, 300);
+        }
     </script>
 </body>
 </html>
