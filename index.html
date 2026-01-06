@@ -5,43 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S49 | THE SILENCE</title>
     <style>
+        /* S49 Master Visual Blueprint - Phase I & IV DNA */
         :root {
-            --s49-black: #050505;
-            --s49-silver: #C0C0C0;
-            --s49-blue-light: #00F3FF;
-            --s49-clinical-white: #F9F9F9;
+            --s49-black: #050505;           /* Total darkness, no public lists */
+            --s49-silver: #C0C0C0;          /* 30% Silver density representation */
+            --s49-blue-light: #00F3FF;      /* The "Blue Light" flex / High-Performance signal */
+            --s49-clinical-white: #F9F9F9;  /* Phase IV Hospital Integration standard */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair; /* Surgical precision */
         }
 
         body {
             background-color: var(--s49-black);
             color: var(--s49-silver);
-            font-family: 'Helvetica Neue', sans-serif;
+            font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
             overflow: hidden;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* The Black Hole Centerpiece */
+        /* The Core "Black Hole" Node */
         #core-node {
             width: 2px;
             height: 2px;
             background: var(--s49-blue-light);
-            box-shadow: 0 0 20px 2px var(--s49-blue-light);
+            box-shadow: 0 0 15px 1px var(--s49-blue-light);
             border-radius: 50%;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            cursor: pointer;
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            opacity: 0.8;
+            z-index: 10;
         }
 
         #core-node:hover {
-            transform: scale(25);
-            box-shadow: 0 0 40px 5px var(--s49-blue-light);
+            transform: scale(35);
+            box-shadow: 0 0 50px 10px var(--s49-blue-light);
+            opacity: 1;
         }
 
-        /* Serialized Node Authentication Overlay */
+        /* Serialized Auth Portal UI */
         #auth-portal {
             display: none;
             position: fixed;
@@ -49,25 +59,38 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
+            animation: fadeIn 2s ease-in-out forwards;
         }
 
         .clinical-input {
             background: transparent;
             border: none;
-            border-bottom: 1px solid var(--s49-silver);
+            border-bottom: 1px solid rgba(192, 192, 192, 0.2);
             color: var(--s49-blue-light);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 200;
             text-align: center;
             outline: none;
-            width: 300px;
-            padding: 10px;
+            width: 280px;
+            padding: 15px;
+            transition: border-color 0.5s ease;
+        }
+
+        .clinical-input:focus {
+            border-bottom: 1px solid var(--s49-blue-light);
         }
 
         .status-msg {
-            font-size: 0.7rem;
-            margin-top: 20px;
+            font-size: 0.65rem;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            color: #444;
+            color: #333; /* Stealth presence */
+            user-select: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -77,526 +100,39 @@
 
     <div id="auth-portal">
         <p class="status-msg">Origin 49 Serialized Entry Required</p>
-        <input type="password" class="clinical-input" placeholder="NODE ID (01-49)" max="2">
-        <p id="feedback" style="margin-top: 15px; font-size: 0.6rem;"></p>
+        <input type="password" id="node-id" class="clinical-input" placeholder="SERIAL NO." maxlength="2">
+        <p id="feedback" style="margin-top: 20px; font-size: 0.6rem; color: #555;"></p>
     </div>
 
     <script>
         function initiateHandshake() {
-            document.getElementById('core-node').style.display = 'none';
-            document.getElementById('auth-portal').style.display = 'block';
-            console.log("S49 Protocol: Handshake Initiated. Monitoring for 0.6Ω resistance match.");
+            const core = document.getElementById('core-node');
+            const portal = document.getElementById('auth-portal');
+            
+            core.style.opacity = '0';
+            setTimeout(() => {
+                core.style.display = 'none';
+                portal.style.display = 'block';
+            }, 500);
+            
+            console.log("S49 Protocol: Mirror Active. Monitoring for 0.6Ω Handshake.");
         }
 
-        // Vault-side validation placeholder
-        const nodeValidation = (id) => {
-            // Logic for Phase IV Hospital Integration authentication
-            if(id >= 1 && id <= 49) {
-                return "ACCESS GRANTED: ORIGIN NODE ACTIVE";
+        // Logic for Node assignment and Mirror validation
+        document.getElementById('node-id').addEventListener('input', function(e) {
+            const val = e.target.value;
+            const feedback = document.getElementById('feedback');
+            
+            if(val.length === 2) {
+                if(parseInt(val) >= 1 && parseInt(val) <= 49) {
+                    feedback.innerText = "NODE " + val + " RECOGNIZED. ACTIVATING S49 ECOSYSTEM.";
+                    feedback.style.color = "#00F3FF";
+                } else {
+                    feedback.innerText = "NODE UNKNOWN. REVERTING TO SILENCE.";
+                    feedback.style.color = "#FF3B3B";
+                }
             }
-            return "NODE UNKNOWN: REVERTING TO SILENCE";
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | THE SILENCE</title>
-    <style>
-        :root {
-            --s49-black: #050505;
-            --s49-silver: #C0C0C0;
-            --s49-blue-light: #00F3FF;
-            --s49-clinical-white: #F9F9F9;
-        }
-
-        body {
-            background-color: var(--s49-black);
-            color: var(--s49-silver);
-            font-family: 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            letter-spacing: 0.2em;
-        }
-
-        /* The Black Hole Centerpiece */
-        #core-node {
-            width: 2px;
-            height: 2px;
-            background: var(--s49-blue-light);
-            box-shadow: 0 0 20px 2px var(--s49-blue-light);
-            border-radius: 50%;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            cursor: pointer;
-        }
-
-        #core-node:hover {
-            transform: scale(25);
-            box-shadow: 0 0 40px 5px var(--s49-blue-light);
-        }
-
-        /* Serialized Node Authentication Overlay */
-        #auth-portal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .clinical-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--s49-silver);
-            color: var(--s49-blue-light);
-            font-size: 1.2rem;
-            text-align: center;
-            outline: none;
-            width: 300px;
-            padding: 10px;
-        }
-
-        .status-msg {
-            font-size: 0.7rem;
-            margin-top: 20px;
-            text-transform: uppercase;
-            color: #444;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="core-node" onclick="initiateHandshake()"></div>
-
-    <div id="auth-portal">
-        <p class="status-msg">Origin 49 Serialized Entry Required</p>
-        <input type="password" class="clinical-input" placeholder="NODE ID (01-49)" max="2">
-        <p id="feedback" style="margin-top: 15px; font-size: 0.6rem;"></p>
-    </div>
-
-    <script>
-        function initiateHandshake() {
-            document.getElementById('core-node').style.display = 'none';
-            document.getElementById('auth-portal').style.display = 'block';
-            console.log("S49 Protocol: Handshake Initiated. Monitoring for 0.6Ω resistance match.");
-        }
-
-        // Vault-side validation placeholder
-        const nodeValidation = (id) => {
-            // Logic for Phase IV Hospital Integration authentication
-            if(id >= 1 && id <= 49) {
-                return "ACCESS GRANTED: ORIGIN NODE ACTIVE";
-            }
-            return "NODE UNKNOWN: REVERTING TO SILENCE";
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | THE SILENCE</title>
-    <style>
-        :root {
-            --s49-black: #050505;
-            --s49-silver: #C0C0C0;
-            --s49-blue-light: #00F3FF;
-            --s49-clinical-white: #F9F9F9;
-        }
-
-        body {
-            background-color: var(--s49-black);
-            color: var(--s49-silver);
-            font-family: 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            letter-spacing: 0.2em;
-        }
-
-        /* The Black Hole Centerpiece */
-        #core-node {
-            width: 2px;
-            height: 2px;
-            background: var(--s49-blue-light);
-            box-shadow: 0 0 20px 2px var(--s49-blue-light);
-            border-radius: 50%;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            cursor: pointer;
-        }
-
-        #core-node:hover {
-            transform: scale(25);
-            box-shadow: 0 0 40px 5px var(--s49-blue-light);
-        }
-
-        /* Serialized Node Authentication Overlay */
-        #auth-portal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .clinical-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--s49-silver);
-            color: var(--s49-blue-light);
-            font-size: 1.2rem;
-            text-align: center;
-            outline: none;
-            width: 300px;
-            padding: 10px;
-        }
-
-        .status-msg {
-            font-size: 0.7rem;
-            margin-top: 20px;
-            text-transform: uppercase;
-            color: #444;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="core-node" onclick="initiateHandshake()"></div>
-
-    <div id="auth-portal">
-        <p class="status-msg">Origin 49 Serialized Entry Required</p>
-        <input type="password" class="clinical-input" placeholder="NODE ID (01-49)" max="2">
-        <p id="feedback" style="margin-top: 15px; font-size: 0.6rem;"></p>
-    </div>
-
-    <script>
-        function initiateHandshake() {
-            document.getElementById('core-node').style.display = 'none';
-            document.getElementById('auth-portal').style.display = 'block';
-            console.log("S49 Protocol: Handshake Initiated. Monitoring for 0.6Ω resistance match.");
-        }
-
-        // Vault-side validation placeholder
-        const nodeValidation = (id) => {
-            // Logic for Phase IV Hospital Integration authentication
-            if(id >= 1 && id <= 49) {
-                return "ACCESS GRANTED: ORIGIN NODE ACTIVE";
-            }
-            return "NODE UNKNOWN: REVERTING TO SILENCE";
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | THE SILENCE</title>
-    <style>
-        :root {
-            --s49-black: #050505;
-            --s49-silver: #C0C0C0;
-            --s49-blue-light: #00F3FF;
-            --s49-clinical-white: #F9F9F9;
-        }
-
-        body {
-            background-color: var(--s49-black);
-            color: var(--s49-silver);
-            font-family: 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            letter-spacing: 0.2em;
-        }
-
-        /* The Black Hole Centerpiece */
-        #core-node {
-            width: 2px;
-            height: 2px;
-            background: var(--s49-blue-light);
-            box-shadow: 0 0 20px 2px var(--s49-blue-light);
-            border-radius: 50%;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            cursor: pointer;
-        }
-
-        #core-node:hover {
-            transform: scale(25);
-            box-shadow: 0 0 40px 5px var(--s49-blue-light);
-        }
-
-        /* Serialized Node Authentication Overlay */
-        #auth-portal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .clinical-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--s49-silver);
-            color: var(--s49-blue-light);
-            font-size: 1.2rem;
-            text-align: center;
-            outline: none;
-            width: 300px;
-            padding: 10px;
-        }
-
-        .status-msg {
-            font-size: 0.7rem;
-            margin-top: 20px;
-            text-transform: uppercase;
-            color: #444;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="core-node" onclick="initiateHandshake()"></div>
-
-    <div id="auth-portal">
-        <p class="status-msg">Origin 49 Serialized Entry Required</p>
-        <input type="password" class="clinical-input" placeholder="NODE ID (01-49)" max="2">
-        <p id="feedback" style="margin-top: 15px; font-size: 0.6rem;"></p>
-    </div>
-
-    <script>
-        function initiateHandshake() {
-            document.getElementById('core-node').style.display = 'none';
-            document.getElementById('auth-portal').style.display = 'block';
-            console.log("S49 Protocol: Handshake Initiated. Monitoring for 0.6Ω resistance match.");
-        }
-
-        // Vault-side validation placeholder
-        const nodeValidation = (id) => {
-            // Logic for Phase IV Hospital Integration authentication
-            if(id >= 1 && id <= 49) {
-                return "ACCESS GRANTED: ORIGIN NODE ACTIVE";
-            }
-            return "NODE UNKNOWN: REVERTING TO SILENCE";
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | THE SILENCE</title>
-    <style>
-        :root {
-            --s49-black: #050505;
-            --s49-silver: #C0C0C0;
-            --s49-blue-light: #00F3FF;
-            --s49-clinical-white: #F9F9F9;
-        }
-
-        body {
-            background-color: var(--s49-black);
-            color: var(--s49-silver);
-            font-family: 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            letter-spacing: 0.2em;
-        }
-
-        /* The Black Hole Centerpiece */
-        #core-node {
-            width: 2px;
-            height: 2px;
-            background: var(--s49-blue-light);
-            box-shadow: 0 0 20px 2px var(--s49-blue-light);
-            border-radius: 50%;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            cursor: pointer;
-        }
-
-        #core-node:hover {
-            transform: scale(25);
-            box-shadow: 0 0 40px 5px var(--s49-blue-light);
-        }
-
-        /* Serialized Node Authentication Overlay */
-        #auth-portal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .clinical-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--s49-silver);
-            color: var(--s49-blue-light);
-            font-size: 1.2rem;
-            text-align: center;
-            outline: none;
-            width: 300px;
-            padding: 10px;
-        }
-
-        .status-msg {
-            font-size: 0.7rem;
-            margin-top: 20px;
-            text-transform: uppercase;
-            color: #444;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="core-node" onclick="initiateHandshake()"></div>
-
-    <div id="auth-portal">
-        <p class="status-msg">Origin 49 Serialized Entry Required</p>
-        <input type="password" class="clinical-input" placeholder="NODE ID (01-49)" max="2">
-        <p id="feedback" style="margin-top: 15px; font-size: 0.6rem;"></p>
-    </div>
-
-    <script>
-        function initiateHandshake() {
-            document.getElementById('core-node').style.display = 'none';
-            document.getElementById('auth-portal').style.display = 'block';
-            console.log("S49 Protocol: Handshake Initiated. Monitoring for 0.6Ω resistance match.");
-        }
-
-        // Vault-side validation placeholder
-        const nodeValidation = (id) => {
-            // Logic for Phase IV Hospital Integration authentication
-            if(id >= 1 && id <= 49) {
-                return "ACCESS GRANTED: ORIGIN NODE ACTIVE";
-            }
-            return "NODE UNKNOWN: REVERTING TO SILENCE";
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S49 | THE SILENCE</title>
-    <style>
-        :root {
-            --s49-black: #050505;
-            --s49-silver: #C0C0C0;
-            --s49-blue-light: #00F3FF;
-            --s49-clinical-white: #F9F9F9;
-        }
-
-        body {
-            background-color: var(--s49-black);
-            color: var(--s49-silver);
-            font-family: 'Helvetica Neue', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            letter-spacing: 0.2em;
-        }
-
-        /* The Black Hole Centerpiece */
-        #core-node {
-            width: 2px;
-            height: 2px;
-            background: var(--s49-blue-light);
-            box-shadow: 0 0 20px 2px var(--s49-blue-light);
-            border-radius: 50%;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            cursor: pointer;
-        }
-
-        #core-node:hover {
-            transform: scale(25);
-            box-shadow: 0 0 40px 5px var(--s49-blue-light);
-        }
-
-        /* Serialized Node Authentication Overlay */
-        #auth-portal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .clinical-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--s49-silver);
-            color: var(--s49-blue-light);
-            font-size: 1.2rem;
-            text-align: center;
-            outline: none;
-            width: 300px;
-            padding: 10px;
-        }
-
-        .status-msg {
-            font-size: 0.7rem;
-            margin-top: 20px;
-            text-transform: uppercase;
-            color: #444;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="core-node" onclick="initiateHandshake()"></div>
-
-    <div id="auth-portal">
-        <p class="status-msg">Origin 49 Serialized Entry Required</p>
-        <input type="password" class="clinical-input" placeholder="NODE ID (01-49)" max="2">
-        <p id="feedback" style="margin-top: 15px; font-size: 0.6rem;"></p>
-    </div>
-
-    <script>
-        function initiateHandshake() {
-            document.getElementById('core-node').style.display = 'none';
-            document.getElementById('auth-portal').style.display = 'block';
-            console.log("S49 Protocol: Handshake Initiated. Monitoring for 0.6Ω resistance match.");
-        }
-
-        // Vault-side validation placeholder
-        const nodeValidation = (id) => {
-            // Logic for Phase IV Hospital Integration authentication
-            if(id >= 1 && id <= 49) {
-                return "ACCESS GRANTED: ORIGIN NODE ACTIVE";
-            }
-            return "NODE UNKNOWN: REVERTING TO SILENCE";
-        }
+        });
     </script>
 </body>
 </html>
-                            
