@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair; /* Clinical Precision */
+            cursor: crosshair; 
         }
 
         body {
@@ -89,7 +89,7 @@
             font-size: 0.6rem;
             margin-bottom: 40px;
             text-transform: uppercase;
-            color: #222; /* Total Silence / Stealth */
+            color: #222; 
             user-select: none;
         }
 
@@ -105,7 +105,7 @@
 
     <div id="auth-portal">
         <p class="status-msg">Origin 49 Serialized Node Assignment Required</p>
-        <input type="password" id="node-id" class="clinical-input" placeholder="01—49" maxlength="2" autofocus>
+        <input type="password" id="node-id" class="clinical-input" placeholder="01—49" maxlength="2">
         <p id="feedback" style="margin-top: 30px; font-size: 0.65rem; color: #333; letter-spacing: 0.4em;"></p>
     </div>
 
@@ -119,12 +119,11 @@
                 core.style.display = 'none';
                 portal.style.display = 'block';
                 document.getElementById('node-id').focus();
-            }, 600);
+            }, 600); /* 0.6s Resistance Standard */
             
             console.log("S49 PROTOCOL: Handshake active. Verifying node resistance...");
         }
 
-        // Serialized Node Assignment Logic (01-49)
         document.getElementById('node-id').addEventListener('input', function(e) {
             const val = e.target.value;
             const feedback = document.getElementById('feedback');
@@ -134,7 +133,6 @@
                 if(nodeNum >= 1 && nodeNum <= 49) {
                     feedback.innerText = "NODE " + val + " RECOGNIZED. 0.6Ω ALIGNMENT ACTIVE.";
                     feedback.style.color = "#00F3FF";
-                    // Phase IV transition logic can be inserted here
                 } else {
                     feedback.innerText = "UNAUTHORIZED NODE. REVERTING TO SILENCE.";
                     feedback.style.color = "#FF3B3B";
@@ -145,4 +143,3 @@
     </script>
 </body>
 </html>
-          
