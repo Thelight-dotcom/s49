@@ -1,1 +1,96 @@
+/* S49 ECOSYSTEM: GLOBAL MASTER VISUAL BLUEPRINT
+  IDENTITY: THE SILENCE / THE MIRROR
+  VERSION: PHASE 1.0 (ORIGIN)
+*/
 
+:root {
+    /* The S49 Signature Palette */
+    --s49-black: #050505;           /* Total darkness, no public lists */
+    --s49-silver: #C0C0C0;          /* 30% Silver density representation */
+    --s49-blue-light: #00F3FF;      /* The "Blue Light" flex / High-Performance signal */
+    --s49-clinical-white: #F9F9F9;  /* Phase IV Hospital Integration standard */
+    --s49-resistance: 0.6;          /* Mathematical Ω alignment */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: crosshair; /* Precision alignment */
+}
+
+body {
+    background-color: var(--s49-black);
+    color: var(--s49-silver);
+    font-family: 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    letter-spacing: 0.25em;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* The Core "Black Hole" Node */
+#core-node {
+    width: 2px;
+    height: 2px;
+    background: var(--s49-blue-light);
+    box-shadow: 0 0 15px 1px var(--s49-blue-light);
+    border-radius: 50%;
+    transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0.8;
+}
+
+#core-node:hover {
+    transform: scale(35);
+    box-shadow: 0 0 50px 10px var(--s49-blue-light);
+    opacity: 1;
+}
+
+/* Serialized Auth Portal UI */
+#auth-portal {
+    display: none;
+    position: fixed;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.clinical-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+    color: var(--s49-blue-light);
+    font-size: 1.5rem;
+    font-weight: 200;
+    text-align: center;
+    outline: none;
+    width: 250px;
+    padding: 15px;
+    transition: border-color 0.5s ease;
+}
+
+.clinical-input:focus {
+    border-bottom: 1px solid var(--s49-blue-light);
+}
+
+.status-msg {
+    font-size: 0.65rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #333; /* Hidden/Subtle presence */
+    user-select: none;
+}
+
+/* Animation for Node Activation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -45%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* Hidden Phase IV Hospital Logic Overlays */
+.sanitization-active {
+    border: 1px solid var(--s49-blue-light);
+    box-shadow: inset 0 0 10px var(--s49-blue-light);
+}
